@@ -19,17 +19,17 @@ class VehiculoController extends Controller
     public function index(Request $request)
     {
 
-        $vehiculos=DB::table('vehiculo')
+        $vehiculo=DB::table('vehiculo')
             ->orderBy('id_vehiculo','desc')
             ->paginate(7);
 
-        return view('parqueadero.vehiculos.index',["vehiculos"=>$vehiculos]);
+        return view('parqueadero.vehiculo.index',["vehiculo"=>$vehiculo]);
     }
    
 
     public function create()
     {
-        return view("parqueadero.vehiculos.create");
+        return view("parqueadero.vehiculo.create");
     }
     public function store (VehiculoFormRequest $request)
     {
@@ -45,7 +45,7 @@ class VehiculoController extends Controller
 
     public function edit($id)
     {
-        return view("parqueadero.vehiculos.edit",["vehiculo"=>Vehiculo::findOrFail($id)]);
+        return view("parqueadero.vehiculo.edit",["vehiculo"=>Vehiculo::findOrFail($id)]);
     }
 
 
