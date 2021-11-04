@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Categoria;
+use App\Vehiculo;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\VehiculoFormRequest;
 use DB;
@@ -21,7 +21,7 @@ class VehiculoController extends Controller
 
         $vehiculo=DB::table('vehiculo')
             ->orderBy('id_vehiculo','desc')
-            ->paginate(7);
+            ->paginate(10);
 
         return view('parqueadero.vehiculo.index',["vehiculo"=>$vehiculo]);
     }
@@ -38,6 +38,7 @@ class VehiculoController extends Controller
 		$vehiculo->telefono=$request->get('telefono');
 		$vehiculo->color=$request->get('color');
 		$vehiculo->estado=$request->get('estado');
+        $vehiculo->save();
         return Redirect::to('parqueadero/vehiculo');
 
     }
@@ -49,10 +50,9 @@ class VehiculoController extends Controller
     }
 
 
-    public function update(CategoriaFormRequest $request,$id)
+    public function update(VehiculoFormRequest $request,$id)
     {
         $vehiculo=Vehiculo::findOrFail($id);
-        $vehiculo = new Vehiculo;
 		$vehiculo->placa=$request->get('placa');
 		$vehiculo->telefono=$request->get('telefono');
 		$vehiculo->color=$request->get('color');
@@ -60,6 +60,8 @@ class VehiculoController extends Controller
         $vehiculo->update();
         return Redirect::to('parqueadero/vehiculo');
     }
+
+
     public function destroy($id)
     {
         $vehiculo=Vehiculo::findOrFail($id);
@@ -69,7 +71,9 @@ class VehiculoController extends Controller
     }
 
 
-
+    public function descargarExcel(Request $request){
+            return view('parqueadero.vehiculo.descargarExcel');
+    }
 
 
 }

@@ -17,3 +17,5 @@ Route::get('/', function () {
 
 
 Route::resource('parqueadero/vehiculo','VehiculoController');
+
+Route::get('descargarExcel', 'VehiculoController@descargarExcel');

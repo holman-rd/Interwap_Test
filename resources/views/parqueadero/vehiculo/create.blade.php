@@ -13,7 +13,7 @@
 			</div>
 			@endif
 
-			{!!Form::open(array('url'=>'almacen/vehiculo','method'=>'POST','autocomplete'=>'off'))!!}
+			{!!Form::open(array('url'=>'parqueadero/vehiculo','method'=>'POST','autocomplete'=>'off'))!!}
             {{Form::token()}}
             <div class="form-group">
             	<label for="nombre">Placa</label>
@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
             	<label for="nombre">Estado</label>
-            	<input type="number" name="placa" class="form-control" placeholder="Estado...">
+            	<input type="number" name="estado" class="form-control" placeholder="Estado...">
             </div>
             <div class="form-group">
             	<button class="btn btn-primary" type="submit">Guardar</button>
